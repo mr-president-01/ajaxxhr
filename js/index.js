@@ -29,6 +29,6 @@ function ajaxGetJson(){
             document.querySelector('.client-account').innerText = clientData.account;
         }
     }
-    xhr.open('GET', 'client-data.html', true);
+    xhr.open('GET', 'client-data.json', true);
     xhr.send();
 }
