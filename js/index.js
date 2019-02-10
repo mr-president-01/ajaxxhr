@@ -44,7 +44,7 @@ function getCurrency(){
         if (xhr.readyState === 4 && xhr.status === 200) {
             const currency = JSON.parse(xhr.responseText);
             document.querySelector('.currency-container')
-                .innerText = currency['USD_UAH'].val;
+                .innerText = currency['USD_UAH']['val'];
         }
     }
     xhr.open('GET', 'https://free.currencyconverterapi.com/api/v6/convert?q=USD_UAH&compact=y', true);
