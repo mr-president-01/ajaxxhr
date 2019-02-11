@@ -52,7 +52,7 @@ function getCurrency(){
 }
 
 document.querySelector('.fetch-get-html')
-    .addEventListener('click', getchGetHtml);
+    .addEventListener('click', fetchGetHtml);
 
 function fetchGetHtml (){
     fetch('client-data.html')
