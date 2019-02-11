@@ -16,7 +16,16 @@ function ajaxGetHtml(){
     xhr.send();
 }
 
- 
+document.querySelector('.fetch-get-html')
+  .addEventListener('click', fetchGetHtml);
+  
+function fetchGetHtml() {
+    fetch('client-data.html')
+        .then( result => result.text() )
+        .then( html => document.querySelector('.html-container').innerHTML = html );
+}
+
+
 document.querySelector('.ajax-get-json')
   .addEventListener('click', ajaxGetJson);
   
@@ -33,35 +42,30 @@ function ajaxGetJson(){
     xhr.send();
 }
 
-window.addEventListener('load', getCurrency)
-
+window.addEventListener('load', getCurrency);
 document.querySelector('.update-currency')
   .addEventListener('click', getCurrency);
   
 function getCurrency(){
-    const xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            const currency = JSON.parse(xhr.responseText);
-            document.querySelector('.currency-container')
-                .innerText = currency['USD_UAH']['val'];
-        }
-    }
-    xhr.open('GET', 'https://free.currencyconverterapi.com/api/v6/convert?q=USD_UAH&compact=y', true);
-    xhr.send();
+    fetch('https://free.currencyconverterapi.com/api/v5/convert?q=USD_UAH&compact=y')
+        .then( response => response.json() )
+        .then( currency => document.querySelector('.currency-container')
+                             .innerText = currency['USD_UAH'].val);
+
+    // AJAX below:
+    // const xhr = new XMLHttpRequest();
+    // xhr.onreadystatechange = function() {
+    //     if (xhr.readyState === 4 && xhr.status === 200) {
+    //         const currency = JSON.parse(xhr.responseText);
+    //         document.querySelector('.currency-container')
+    //          .innerText = currency['USD_UAH'].val;
+    //     }
+    // }
+    // xhr.open('GET', 'https://free.currencyconverterapi.com/api/v5/convert?q=USD_UAH&compact=y', true);
+    // xhr.send();
 }
 
-document.querySelector('.fetch-get-html')
-    .addEventListener('click', fetchGetHtml);
-
-function fetchGetHtml (){
-    fetch('client-data.html')
-        .then(result => result.text())
-        .then(html => document.querySelector('.html-container')
-               .innerHTML = html);
-}
-
- document.querySelector('.login-form').addEventListener('submit', submitForm);
+document.querySelector('.login-form').addEventListener('submit', submitForm);
 
 function submitForm(e) {
     e.preventDefault();
