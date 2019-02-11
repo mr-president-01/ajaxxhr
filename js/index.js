@@ -50,3 +50,13 @@ function getCurrency(){
     xhr.open('GET', 'https://free.currencyconverterapi.com/api/v6/convert?q=USD_UAH&compact=y', true);
     xhr.send();
 }
+
+document.querySelector('.fetch-get-html')
+    .addEventListener('click', getchGetHtml);
+
+function fetchGetHtml (){
+    fetch('client-data.html')
+        .then(result => result.text())
+        .then(html => document.querySelector('.html-container')
+               .innerHTML = html);
+}
